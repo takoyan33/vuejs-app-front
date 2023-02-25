@@ -57,7 +57,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} Nuxt Todo App</span>
     </v-footer>
   </v-app>
 </template>
@@ -72,15 +72,20 @@ export default {
       fixed: false,
       items: [
         {
+          icon: "Top",
+          title: "Top",
+          to: "/",
+        },
+        {
           icon: "About",
           title: "About",
           to: "/about",
         },
-        {
-          icon: "mdi-chart-bubble",
-          title: "News",
-          to: "/News",
-        },
+        // {
+        //   icon: "mdi-chart-bubble",
+        //   title: "News",
+        //   to: "/News",
+        // },
       ],
       miniVariant: false,
       right: true,

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <section class="container">
     <h1 class="text-center my-8">Nuxt Todo App</h1>
     <div class="">
@@ -7,20 +7,20 @@
 
     <v-card width="600px" class="mx-auto mt-5 py-10 px-10">
       <p>
-        <v-text-field type="text" name="" v-model="content" @focus="set_flg" />
+        <v-text-field type="text" v-model="content" @focus="set_flg" />
       </p>
 
       <div class="m-auto my-5 text-center">
-        <v-btn @click="insert" class="m-auto my-5">保存</v-btn>
-        <v-btn @click="find" class="m-auto my-5">見つける</v-btn>
-        <v-btn @click="flag_reset" class="m-auto my-5">全て</v-btn>
+        <v-btn @click="insert" color="primary"  class="m-auto my-5">保存</v-btn>
+        <v-btn @click="find" color="primary"  class="m-auto my-5">見つける</v-btn>
+        <v-btn @click="flag_reset" color="primary"  class="m-auto my-5">全て</v-btn>
       </div>
     </v-card>
-    <ul>
+    <ul >
       <li v-for="(todo, index) in display_todos" :key="index">
         <span>{{ todo.content }}</span
         ><span>({{ todo.created }})</span
-        ><v-btn @click="remove(todo)">完了</v-btn>
+        ><v-btn color="primary"  @click="remove(todo)">完了</v-btn>
       </li>
     </ul>
   </section>
@@ -73,6 +73,36 @@ export default {
     flag_reset: function () {
       this.find_flg = false;
     },
+  },
+};
+</script> -->
+
+<template>
+  <div>
+    <h1>Todoリスト</h1>
+    <ul v-if="todos">
+      <li v-for="todo in todos" :key="todo.id">
+        {{ todo.title }}
+      </li>
+    </ul>
+    <p v-else>データを取得できませんでした。</p>
+  </div>
+</template>
+
+<script>
+export default {
+  async asyncData({ store }) {
+    try {
+      await store.dispatch("todos/fetchTodos");
+      return {
+        todos: store.state.todos.todos || null,
+      };
+    } catch (error) {
+      console.error(error);
+      return {
+        todos: [],
+      };
+    }
   },
 };
 </script>

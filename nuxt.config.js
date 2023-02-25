@@ -80,4 +80,9 @@ export default {
   compilerOptions: {
     types: ["@nuxt/types", "nuxt-supabase"],
   },
+
+  env: {
+    supabaseUrl: process.env.SUPABASE_URL,
+    supabaseKey: process.env.SUPABASE_KEY,
+  },
 };
