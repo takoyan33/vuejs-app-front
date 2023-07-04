@@ -39,12 +39,3 @@ const createStore = () => {
 };
 
 export default createStore;
-
-export const actions = {
-  async fetchTodos({ commit }) {
-    console.log("fetching todos...");
-    const { data } = await supabase.from("todos").select("*");
-    console.log("fetched todos:", data);
-    commit("setTodos", data);
-  },
-};
